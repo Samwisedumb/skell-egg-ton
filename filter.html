@@ -20,13 +20,13 @@
       tempCanvas.width = image.width;
       tempCanvas.height = image.height;
       var tempContext = tempCanvas.getContext('2d');
-      
+
       tempContext.drawImage(image, 0, 0);
       var imgData = tempContext.getImageData(0, 0, image.width, image.height);
       var pixels = imgData.data;
 
       for (var i = 0; i < pixels.length / 4; i += 4) {
-        pixels[i] += 100;
+        imgData.data[i] += 100;
       }
 
       context.clearRect(0, 0, canvas.width, canvas.height);
