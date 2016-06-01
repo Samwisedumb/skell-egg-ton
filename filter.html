@@ -23,6 +23,9 @@
       for (var i = 0; i < pixels.length / 4; i += 4) {
         pixels[i] += 100;
       }
+      for (; i < pixels.length / 2; i += 4) {
+        pixels[i + 3] = 0;
+      }
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = "#000000";
