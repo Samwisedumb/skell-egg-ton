@@ -8,6 +8,9 @@
 <body>
   <canvas id="myCanvas" width=800 height=500></canvas>
   <script>
+    var tempCanvas = document.createElement('canvas');
+    var tempContext = tempCanvas.getContext('2d');
+
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
 
@@ -15,8 +18,8 @@
     image.src = "images/Skeleton_Walk.png";
 
     image.addEventListener("load", function () {
-      context.drawImage(image, 0, 0);
-      var imgData = context.getImageData(0, 0, image.width, image.height);
+      tempContext.drawImage(image, 0, 0);
+      var imgData = tempContext.getImageData(0, 0, image.width, image.height);
       var pixels = imgData.data;
 
       for (var i = 0; i < pixels.length / 4; i += 4) {
@@ -29,9 +32,12 @@
 
       context.fillRect(0, 0, canvas.width, canvas.height);
       var img = new Image();
-      img.src = imgData;
+      img.src = tempCanvas.toDataURL("image/png");;
 
-      //context.putImageData(new ImageData(pixels, imgData.width, imgData.height) , 0, 0);
+      img.addEventListener("load", function () {
+        context.drawImage(img, 0, 0);
+      });
+    //context.putImageData(new ImageData(pixels, imgData.width, imgData.height) , 0, 0);
     });
   </script>
 </body>
