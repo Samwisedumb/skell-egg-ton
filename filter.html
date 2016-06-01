@@ -31,7 +31,7 @@
       context.fillStyle = "#000000";
       context.fillRect(0, 0, canvas.width, canvas.height);
       var img = new Image();
-      img.src = tempCanvas.toDataURL('image/png');
+      img.src = new ImageData(pixels, imgData.width, imgData.height);//tempCanvas.toDataURL('image/png');
       context.drawImage(img, 0, 0); //the true context of the canvas
       //context.putImageData(new ImageData(pixels, imgData.width, imgData.height) , 0, 0);
     });
