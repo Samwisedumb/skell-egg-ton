@@ -27,7 +27,7 @@
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = "#EEEEEE";
       context.fillRect(0, 0, canvas.width, canvas.height);
-      context.putImageData(new ImageData(pixels) , 0, 0);
+      context.putImageData(new ImageData(pixels, imgData.width, imgData.height) , 0, 0);
     });
   </script>
 </body>
