@@ -19,9 +19,11 @@
 
       var imgData = context.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
 
-      context.clearRect(0, 0, canvas.height, canvas.width);
+      console.log(imgData[0], imgData[1], imgData[2], imgData[3])
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = "#EEEEEE";
-      context.fillRect(0, 0, canvas.height, canvas.width);
+      context.fillRect(0, 0, canvas.width, canvas.height);
       context.putImageData(imgData , 0, 0);
     });
   </script>
