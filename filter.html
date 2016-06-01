@@ -12,13 +12,6 @@
     var tempContext = tempCanvas.getContext('2d');
 
 
-
-    //modify here the imageData as you need
-
-    var img = new Image();
-    img.src = imageData;
-    context.drawImage(img, 0, 0); //the true context of the canvas
-
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
 
@@ -27,7 +20,7 @@
 
     image.addEventListener("load", function () {
       tempContext.drawImage(image, 0, 0);
-      var imageData = tempContext.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
+      var imgData = tempContext.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
       var pixels = imgData.data;
 
       for (var i = 0; i < pixels.length / 4; i += 4) {
