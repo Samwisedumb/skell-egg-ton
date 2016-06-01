@@ -19,7 +19,7 @@
 
       var imgData = context.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
 
-      console.log(imgData[0], imgData[1], imgData[2], imgData[3])
+      console.log(imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3])
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = "#EEEEEE";
