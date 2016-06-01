@@ -8,10 +8,6 @@
 <body>
   <canvas id="myCanvas" width=800 height=500></canvas>
   <script>
-    var tempCanvas = document.createElement('canvas');
-    tempCanvas.width = image.width;
-    tempCanvas.height = image.height;
-    var tempContext = tempCanvas.getContext('2d');
 
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
@@ -20,6 +16,11 @@
     image.src = "images/Skeleton_Walk.png";
 
     image.addEventListener("load", function () {
+      var tempCanvas = document.createElement('canvas');
+      tempCanvas.width = image.width;
+      tempCanvas.height = image.height;
+      var tempContext = tempCanvas.getContext('2d');
+      
       tempContext.drawImage(image, 0, 0);
       var imgData = tempContext.getImageData(0, 0, image.width, image.height);
       var pixels = imgData.data;
