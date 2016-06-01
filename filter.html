@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Practice - Filtering images</title>
+</head>
+
+<body>
+  <canvas id="myCanvas" width=800 height=500></canvas>
+  <script>
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    var image = new Image();
+    image.src = "lpc_entry/png/walkcycle/BODY_skeleton.png";
+    image.setAttribute('crossOrigin', '');
+
+    image.addEventListener("load", function () {
+      context.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
+
+      var imgData = context.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
+
+      context.clearRect(0, 0, canvas.height, canvas.width);
+      context.fillStyle = "#EEEEEE";
+      context.fillRect(0, 0, canvas.height, canvas.width);
+      context.putImageData(imgData , 0, 0);
+    });
+  </script>
+</body>
+</html>
