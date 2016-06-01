@@ -8,6 +8,22 @@
 <body>
   <canvas id="myCanvas" width=800 height=500></canvas>
   <script>
+    function filterImage(filterAction, image) {
+      var canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      var context = context.getContext("2d");
+
+      context.drawImage(image, 0, 0);
+      var imageData = context.getImageData(0, 0, image.width, image.height);
+
+      filterAction(imageData);
+
+      context.putImageData(imageData , 0, 0);
+      var filteredImage = new Image();
+      filteredImage.src = canvas.toDataURL("image/png");
+      return filteredImage;
+    }
 
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
@@ -16,25 +32,15 @@
     image.src = "images/Skeleton_Walk.png";
 
     image.addEventListener("load", function () {
-      var tempCanvas = document.createElement('canvas');
-      tempCanvas.width = image.width;
-      tempCanvas.height = image.height;
-      var tempContext = tempCanvas.getContext('2d');
-
-      tempContext.drawImage(image, 0, 0);
-      var imgData = tempContext.getImageData(0, 0, image.width, image.height);
-
-      for (var i = 0; i < imgData.data.length / 4; i += 4) {
-        imgData.data[i] += 100;
-      }
-
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = "#000000";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      tempContext.putImageData(imgData , 0, 0);
-      var img = new Image();
-      img.src = tempCanvas.toDataURL("image/png");;
+      var filteredImage = filterImage(function (img) {
+        for (var i = 0; i < img.data.length; i += 4) {
+          img.data[i] += 200;
+        }
+      }, image);
 
       img.addEventListener("load", function () {
         context.drawImage(img, 0, 0);
