@@ -18,15 +18,16 @@
       context.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
 
       var imgData = context.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
+      var pixels = imgData.data;
 
-      for (var i = 0; i < 1200; i += 4) {
-        imgData.data[i] += 200;
+      for (var i = 0; i < pixels.length / 4; i += 4) {
+        pixels[i] += 100;
       }
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = "#EEEEEE";
       context.fillRect(0, 0, canvas.width, canvas.height);
-      context.putImageData(imgData , 0, 0);
+      context.putImageData(pixels , 0, 0);
     });
   </script>
 </body>
