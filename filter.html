@@ -20,7 +20,9 @@
       var imgData = context.getImageData(0, 0, image.naturalWidth, image.naturalHeight);
 
       for (var i = 0; i < 1200; i += 4) {
-        console.log(imgData.data[i], imgData.data[i + 1], imgData.data[i + 2], imgData.data[i + 3])
+        if (image.data[i] || image.data[i + 1] || image.data[i + 2]) {
+          console.log(imgData.data[i], imgData.data[i + 1], imgData.data[i + 2], imgData.data[i + 3]);
+        }
       }
 
       context.clearRect(0, 0, canvas.width, canvas.height);
